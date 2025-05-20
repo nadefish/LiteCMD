@@ -12,7 +12,9 @@ function handleCommand(cmd) {
     case 'help':
       appendOutput("Available commands:\nhelp\nhello\nhi\ntime\nping\nstop\nclear");
       break;
-    case 'hello':
+    case 'skibidi':
+      appendOutput("toilet");
+      case 'hello':
       appendOutput("Hi there! 👋");
       break;
     case 'hi':
