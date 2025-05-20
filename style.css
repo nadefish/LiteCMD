@@ -1,0 +1,29 @@
+body {
+  background: black;
+  color: lime;
+  font-family: monospace;
+  margin: 0;
+  padding: 20px;
+}
+
+#terminal {
+  max-width: 600px;
+  margin: auto;
+}
+
+#output {
+  white-space: pre-wrap;
+  margin-bottom: 10px;
+  height: 70vh;
+  overflow-y: auto;
+}
+
+#input {
+  background: black;
+  color: lime;
+  border: none;
+  width: 100%;
+  font-family: monospace;
+  font-size: 1rem;
+  outline: none;
+}
