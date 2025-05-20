@@ -1,8 +1,5 @@
 const input = document.getElementById('input');
 const output = document.getElementById('output');
-const runBtn = document.getElementById('runBtn');
-const clearBtn = document.getElementById('clearBtn');
-const stopBtn = document.getElementById('stopBtn');
 let pingInterval = null;
 
 function appendOutput(text) {
@@ -30,7 +27,6 @@ function handleCommand(cmd) {
         break;
       }
       appendOutput('Starting ping...');
-      stopBtn.disabled = false;
       pingInterval = setInterval(() => {
         let ping;
         const rand = Math.random();
@@ -49,7 +45,6 @@ function handleCommand(cmd) {
         clearInterval(pingInterval);
         pingInterval = null;
         appendOutput('Ping stopped.');
-        stopBtn.disabled = true;
       } else {
         appendOutput('Nothing to stop.');
       }
@@ -62,38 +57,15 @@ function handleCommand(cmd) {
   }
 }
 
-runBtn.addEventListener('click', () => {
-  const command = input.value.trim().toLowerCase();
-  if (!command) return;
-  appendOutput('> ' + command);
-  handleCommand(command);
-  input.value = '';
-  input.focus();
-});
-
-clearBtn.addEventListener('click', () => {
-  output.innerHTML = '';
-  input.focus();
-});
-
-stopBtn.addEventListener('click', () => {
-  if (pingInterval) {
-    clearInterval(pingInterval);
-    pingInterval = null;
-    appendOutput('Ping stopped.');
-    stopBtn.disabled = true;
-  }
-  input.focus();
-});
-
-// Optional: run command on Enter key in input
 input.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
-    runBtn.click();
+    const command = input.value.trim().toLowerCase();
+    if (!command) return;
+    appendOutput('> ' + command);
+    handleCommand(command);
+    input.value = '';
   }
 });
 
-// Initial welcome message
+// Welcome message
 appendOutput("Hi! Welcome to LiteCMD.\nType 'help' to see commands.");
-stopBtn.disabled = true;
-input.focus();
