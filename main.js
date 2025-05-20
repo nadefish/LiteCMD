@@ -32,14 +32,16 @@ function handleCommand(cmd) {
       pingInterval = setInterval(async () => {
         const start = performance.now();
         try {
-          await fetch("https://www.google.com/favicon.ico", { cache: "no-store" });
+          // Using a small image file to simulate ping
+          await fetch("https://www.google.com/favicon.ico?_=" + Date.now(), { cache: "no-store" });
           const end = performance.now();
-          output.innerHTML += `Ping: ${Math.round(end - start)} ms\n`;
+          const ping = Math.round(end - start);
+          output.innerHTML += `Ping: ${ping} ms\n`;
           output.scrollTop = output.scrollHeight;
-        } catch (e) {
+        } catch {
           output.innerHTML += `Ping failed\n`;
         }
-      }, 1); // You may want to use 100ms instead of 1ms for performance
+      }, 100); // 100ms is realistic; 1ms will crash or overload
       break;
     case 'stop':
       if (pingInterval) {
